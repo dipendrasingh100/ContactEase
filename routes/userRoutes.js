@@ -1,4 +1,4 @@
-const { registerUser, loginUser, currentUser } = require("../controllers/userController")
+const { registerUser, loginUser, currentUser, logoutUser } = require("../controllers/userController")
 const validateToken = require("../middleware/validateTokenHandler")
 
 const router = require("express").Router()
