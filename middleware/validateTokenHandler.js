@@ -1,6 +1,5 @@
 const asyncHandler = require("express-async-handler")
 const jwt = require("jsonwebtoken")
-const tokenBlacklist = require("./tokenBlacklist")
 
 const validateToken = asyncHandler(async (req, res, next) => {
     let token;
@@ -12,12 +11,6 @@ const validateToken = asyncHandler(async (req, res, next) => {
                 res.status(401)
                 throw new Error("Invalid Token")
             }
-
-            // Check if the token ID (jti) is in the blacklist
-            if (tokenBlacklist.has(decoded.jti)) {
-                return res.status(401).json({ message: 'Token has been revoked' });
-            }
-
             req.user = decoded.user;
             next()
         })

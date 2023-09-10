@@ -3,7 +3,6 @@ const bcrypt = require("bcrypt")
 const User = require("../models/userModel")
 const jwt = require("jsonwebtoken")
 
-const tokenBlacklist = new Set();
 //@desc Register a user
 //@route POST /api/users/register  
 //@access public
@@ -84,8 +83,7 @@ const currentUser = asyncHandler(async (req, res) => {
 //@route GET /api/users/logout  
 //@access public
 const logoutUser = asyncHandler(async (req, res) => {
-    tokenBlacklist.add(decoded.jti);
-
+    
     res.status(200).json({ message: 'Logged out successfully' });
 })
 

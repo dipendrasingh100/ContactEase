@@ -1,4 +1,4 @@
-const { registerUser, loginUser, currentUser, logoutUser } = require("../controllers/userController")
+const { registerUser, loginUser, currentUser } = require("../controllers/userController")
 const validateToken = require("../middleware/validateTokenHandler")
 
 const router = require("express").Router()
@@ -9,6 +9,6 @@ router.post("/login", loginUser)
 
 router.get("/current", validateToken, currentUser)
 
-router.get("/logout", validateToken, logoutUser)
+router.get("/logout", logoutUser)
 
 module.exports = router
